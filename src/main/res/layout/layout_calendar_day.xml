@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ContainerDayOfWeek">
+
+    <View style="@style/StripRange" />
+
+    <com.example.testsetstyletodatepicker.customeView.CustomTextView
+        android:id="@+id/dayOfMonthText"
+        style="@style/DayOfMonthStyle"
+        android:text="0" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dayOfMonthText"
+        android:layout_alignEnd="@+id/dayOfMonthText"
+        android:layout_alignBottom="@+id/dayOfMonthText"
+        android:layout_marginBottom="3dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/ic_vector_circle"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/dayOfMonthText"
+        android:layout_alignBottom="@+id/dayOfMonthText"
+        android:layout_marginRight="3dp"
+        android:text="1"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="10.5sp" />
+</RelativeLayout>
