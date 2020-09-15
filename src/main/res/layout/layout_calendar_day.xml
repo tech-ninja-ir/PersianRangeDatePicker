@@ -6,17 +6,17 @@
 
     <View style="@style/StripRange" />
 
-    <com.example.testsetstyletodatepicker.customeView.CustomTextView
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
         android:id="@+id/dayOfMonthText"
         style="@style/DayOfMonthStyle"
         android:text="0" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/imgEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dayOfMonthText"
-        android:layout_alignEnd="@+id/dayOfMonthText"
+        android:layout_alignLeft="@+id/dayOfMonthText"
+        android:layout_alignRight="@+id/dayOfMonthText"
         android:layout_alignBottom="@+id/dayOfMonthText"
         android:layout_marginBottom="3dp"
         android:scaleType="fitCenter"

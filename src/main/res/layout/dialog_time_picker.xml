@@ -11,7 +11,7 @@
         android:gravity="center_vertical"
         android:padding="8dp">
 
-        <com.example.testsetstyletodatepicker.customeView.CustomTextView
+        <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
             android:id="@+id/tvHeaderTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <com.example.testsetstyletodatepicker.customeView.CustomTextView
+        <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
             android:id="@+id/tvHeaderCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <com.example.testsetstyletodatepicker.customeView.CustomTextView
+        <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
             android:id="@+id/tvHeaderDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

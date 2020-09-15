@@ -6,37 +6,37 @@
     android:gravity="center"
     android:orientation="horizontal">
 
-    <com.example.testsetstyletodatepicker.customeView.CustomTextView
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
         style="@style/WeekDayTitleStyle"
         android:tag="dayOfWeek1"
         android:text="@string/sat" />
 
-    <com.example.testsetstyletodatepicker.customeView.CustomTextView
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
         style="@style/WeekDayTitleStyle"
         android:tag="dayOfWeek2"
         android:text="@string/sun" />
 
-    <com.example.testsetstyletodatepicker.customeView.CustomTextView
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
         style="@style/WeekDayTitleStyle"
         android:tag="dayOfWeek3"
         android:text="@string/mon" />
 
-    <com.example.testsetstyletodatepicker.customeView.CustomTextView
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
         style="@style/WeekDayTitleStyle"
         android:tag="dayOfWeek4"
         android:text="@string/tue" />
 
-    <com.example.testsetstyletodatepicker.customeView.CustomTextView
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
         style="@style/WeekDayTitleStyle"
         android:tag="dayOfWeek5"
         android:text="@string/wed" />
 
-    <com.example.testsetstyletodatepicker.customeView.CustomTextView
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
         style="@style/WeekDayTitleStyle"
         android:tag="dayOfWeek6"
         android:text="@string/thu" />
 
-    <com.example.testsetstyletodatepicker.customeView.CustomTextView
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
         style="@style/WeekDayTitleStyle"
         android:tag="dayOfWeek7"
         android:text="@string/fri" />

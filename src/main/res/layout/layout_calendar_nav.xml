@@ -7,13 +7,12 @@
     android:layout_height="wrap_content"
     android:layoutDirection="rtl">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/imgVNavLeft"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="centerInside"
         android:tint="@android:color/black"
         android:visibility="visible"
@@ -31,7 +30,7 @@
         android:gravity="center|center_horizontal"
         android:orientation="horizontal">
 
-        <com.example.testsetstyletodatepicker.customeView.CustomTextView
+        <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
             android:id="@+id/tvYearTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,13 +54,12 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/imgVNavRight"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="center"
         android:tint="@android:color/black"
         android:visibility="visible"
