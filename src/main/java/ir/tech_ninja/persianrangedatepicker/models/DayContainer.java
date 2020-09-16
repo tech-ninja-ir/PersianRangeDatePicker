@@ -1,10 +1,9 @@
 package ir.tech_ninja.persianrangedatepicker.models;
 
+import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import androidx.appcompat.widget.AppCompatImageView;
 
 import ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView;
 import ir.tech_ninja.persianrangedatepicker.utils.PersianCalendar;

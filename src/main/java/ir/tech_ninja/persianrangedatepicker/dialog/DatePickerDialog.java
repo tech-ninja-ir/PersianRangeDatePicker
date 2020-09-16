@@ -10,7 +10,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import ir.tech_ninja.persianrangedatepicker.R;
+import com.sardari.ali.persianrangedatepicker.R;
+
 import ir.tech_ninja.persianrangedatepicker.customeView.DateRangeCalendarView;
 import ir.tech_ninja.persianrangedatepicker.utils.FontUtils;
 import ir.tech_ninja.persianrangedatepicker.utils.MyUtils;

@@ -9,9 +9,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TimePicker;
 
+import com.sardari.ali.persianrangedatepicker.R;
+
 import java.util.Calendar;
 
-import ir.tech_ninja.persianrangedatepicker.R;
 import ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView;
 
 public class TimePickerDialog extends Dialog {

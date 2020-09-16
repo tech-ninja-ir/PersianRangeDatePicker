@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,13 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
+import com.sardari.ali.persianrangedatepicker.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import ir.tech_ninja.persianrangedatepicker.R;
 import ir.tech_ninja.persianrangedatepicker.dialog.TimePickerDialog;
 import ir.tech_ninja.persianrangedatepicker.models.DayContainer;
 import ir.tech_ninja.persianrangedatepicker.utils.FontUtils;

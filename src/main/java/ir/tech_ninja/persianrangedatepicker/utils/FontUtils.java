@@ -2,8 +2,7 @@ package ir.tech_ninja.persianrangedatepicker.utils;
 
 import android.content.Context;
 import android.graphics.Typeface;
-
-import androidx.collection.SimpleArrayMap;
+import android.support.v4.util.SimpleArrayMap;
 
 public class FontUtils {
     private static String FONT_NAME = "IRANSans";

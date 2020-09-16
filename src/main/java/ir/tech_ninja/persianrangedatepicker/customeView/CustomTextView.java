@@ -1,9 +1,8 @@
 package ir.tech_ninja.persianrangedatepicker.customeView;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-
-import androidx.appcompat.widget.AppCompatTextView;
 
 public class CustomTextView extends AppCompatTextView {
     public CustomTextView(Context context) {
