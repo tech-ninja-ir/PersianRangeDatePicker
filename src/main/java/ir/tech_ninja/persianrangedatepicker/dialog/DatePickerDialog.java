@@ -1,14 +1,16 @@
 package ir.tech_ninja.persianrangedatepicker.dialog;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.design.widget.BottomSheetDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.sardari.ali.persianrangedatepicker.R;
 
@@ -17,11 +19,13 @@ import ir.tech_ninja.persianrangedatepicker.utils.FontUtils;
 import ir.tech_ninja.persianrangedatepicker.utils.MyUtils;
 import ir.tech_ninja.persianrangedatepicker.utils.PersianCalendar;
 
-public class DatePickerDialog extends Dialog {
+public class DatePickerDialog extends BottomSheetDialog {
     //region Fields
     private Context mContext;
     private DateRangeCalendarView calendar;
     private Button btn_Accept;
+    private TextView tvDate1, tvDate2;
+    private RelativeLayout rlReturn;
     private PersianCalendar date, startDate, endDate;
     private Typeface typeface;
     //endregion
@@ -44,7 +48,7 @@ public class DatePickerDialog extends Dialog {
         lp.copyFrom(window.getAttributes());
         //This makes the dialog take up the full width
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(lp);
 
         PersianCalendar today = new PersianCalendar();
@@ -56,6 +60,15 @@ public class DatePickerDialog extends Dialog {
         setContentView(R.layout.dialog_date_picker);
 
         btn_Accept = findViewById(R.id.btn_Accept);
+        tvDate1 = findViewById(R.id.tv_date);
+        tvDate2 = findViewById(R.id.tv_date_return);
+        rlReturn = findViewById(R.id.rl_return);
+        findViewById(R.id.iv_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
         acceptButtonColor = mContext.getColor(R.color.white);
 //        calendar = findViewById(R.id.calendar);
@@ -68,12 +81,15 @@ public class DatePickerDialog extends Dialog {
             @Override
             public void onDateSelected(PersianCalendar _date) {
                 date = _date;
+                tvDate1.setText(_date.getPersianWeekDayName() + " " + _date.getPersianDay() + " " + _date.getPersianMonthName());
             }
 
             @Override
             public void onDateRangeSelected(PersianCalendar _startDate, PersianCalendar _endDate) {
                 startDate = _startDate;
                 endDate = _endDate;
+                tvDate1.setText(_startDate.getPersianWeekDayName() + " " + _startDate.getPersianDay() + " " + _startDate.getPersianMonthName());
+                tvDate2.setText(_endDate.getPersianWeekDayName() + " " + _endDate.getPersianDay() + " " + _endDate.getPersianMonthName());
             }
 
             @Override
@@ -157,6 +173,9 @@ public class DatePickerDialog extends Dialog {
 
         if (selectionMode.getValue() == DateRangeCalendarView.SelectionMode.None.getValue()) {
             btn_Accept.setVisibility(View.GONE);
+            rlReturn.setVisibility(View.INVISIBLE);
+        } else {
+            rlReturn.setVisibility(View.VISIBLE);
         }
 
         this.show();

@@ -13,5 +13,6 @@
     <string name="done">تایید</string>
     <string name="title_time_picker">انتخاب زمان</string>
     <string name="select_time">Select a Time</string>
+    <string name="choice_date">انتخاب تاریخ</string>
 
 </resources>
