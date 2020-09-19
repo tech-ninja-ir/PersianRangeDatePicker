@@ -100,7 +100,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="16dp"
-                    android:text="دوشنبه 8 شهریور"
+                    android:text="تاریخ رفت"
                     android:textColor="@color/black" />
 
             </RelativeLayout>
