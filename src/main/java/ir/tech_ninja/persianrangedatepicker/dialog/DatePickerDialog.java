@@ -1,8 +1,8 @@
 package ir.tech_ninja.persianrangedatepicker.dialog;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.design.widget.BottomSheetDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +19,7 @@ import ir.tech_ninja.persianrangedatepicker.utils.FontUtils;
 import ir.tech_ninja.persianrangedatepicker.utils.MyUtils;
 import ir.tech_ninja.persianrangedatepicker.utils.PersianCalendar;
 
-public class DatePickerDialog extends BottomSheetDialog {
+public class DatePickerDialog extends Dialog {
     //region Fields
     private Context mContext;
     private DateRangeCalendarView calendar;
