@@ -570,9 +570,11 @@ public class DateRangeCalendarView extends LinearLayout {
      */
     private void disableDayContainer(DayContainer container) {
         container.tvDate.setBackgroundColor(Color.TRANSPARENT);
+        container.tvDateGeorgian.setBackgroundColor(Color.TRANSPARENT);
         container.strip.setBackgroundColor(Color.TRANSPARENT);
         container.rootView.setBackgroundColor(Color.TRANSPARENT);
         container.tvDate.setTextColor(disableDateColor);
+        container.tvDateGeorgian.setTextColor(disableDateColor);
         container.rootView.setVisibility(VISIBLE);
         container.rootView.setOnClickListener(null);
     }
