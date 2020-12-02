@@ -240,6 +240,7 @@ public class DateRangeCalendarView extends LinearLayout {
                         DayContainer container = new DayContainer(rlDayContainer);
                         container.tvDate.setVisibility(VISIBLE);
                         container.tvDateGeorgian.setVisibility(INVISIBLE);
+                        makeAsSelectedDate(container, STRIP_TYPE_NONE);
                     }
                 }
             }
@@ -259,6 +260,7 @@ public class DateRangeCalendarView extends LinearLayout {
                         DayContainer container = new DayContainer(rlDayContainer);
                         container.tvDate.setVisibility(INVISIBLE);
                         container.tvDateGeorgian.setVisibility(VISIBLE);
+                        makeAsSelectedDate(container, STRIP_TYPE_NONE);
                     }
                 }
             }
