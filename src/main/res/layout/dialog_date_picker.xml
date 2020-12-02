@@ -1,179 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="@dimen/dim_20dp">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/choice_date"
-            android:textColor="@color/black" />
-
-        <ImageView
-            android:id="@+id/iv_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="8dp"
-            android:src="@drawable/ic_cancel" />
-
-    </RelativeLayout>
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_milady"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_corner_gray"
-            android:text="میلادی"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/btn_shamsi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_corner_blue"
-            android:text="شمسی"
-            android:textColor="@color/white" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/cl_choice_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_corner"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
         android:padding="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/choice_date"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="8dp"
+                android:src="@drawable/ic_cancel" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
             android:orientation="horizontal">
 
-            <RelativeLayout
-                android:id="@+id/rl_return"
+            <Button
+                android:id="@+id/btn_milady"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:visibility="visible">
+                android:background="@drawable/round_corner_gray"
+                android:text="میلادی"
+                android:textColor="@color/white" />
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:background="@color/gray" />
-
-                <TextView
-                    android:id="@+id/tv_date_return_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="8dp"
-                    android:text="تاریخ برگشت"
-                    android:textSize="8dp" />
-
-                <TextView
-                    android:id="@+id/tv_date_return"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="8dp"
-                    android:text="تاریخ برگشت"
-                    android:textColor="@color/black" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_went"
+            <Button
+                android:id="@+id/btn_shamsi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tv_date_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="16dp"
-                    android:text="تاریخ رفت"
-                    android:textSize="8dp" />
-
-                <TextView
-                    android:id="@+id/tv_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="16dp"
-                    android:text="تاریخ رفت"
-                    android:textColor="@color/black" />
-
-            </RelativeLayout>
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_corner_blue"
+                android:text="شمسی"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/iv_calendar"
+        <LinearLayout
+            android:id="@+id/cl_choice_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
-            android:src="@drawable/ic_calendar" />
+            android:background="@drawable/round_corner"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:orientation="horizontal">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/dim_20dp"
-        android:layout_marginBottom="@dimen/dim_20dp"
-        android:background="@color/gray" />
+                <RelativeLayout
+                    android:id="@+id/rl_return"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="visible">
 
-    <LinearLayout
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:background="@color/gray" />
 
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_date_return_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="8dp"
+                        android:text="تاریخ برگشت"
+                        android:textSize="8dp" />
 
-    <LinearLayout
-        android:id="@+id/lay_Accept"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:gravity="center"
-        android:padding="5dp">
+                    <TextView
+                        android:id="@+id/tv_date_return"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="8dp"
+                        android:text="تاریخ برگشت"
+                        android:textColor="@color/black" />
 
-        <Button
-            android:id="@+id/btn_Accept"
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_went"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_date_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="تاریخ رفت"
+                        android:textSize="8dp" />
+
+                    <TextView
+                        android:id="@+id/tv_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="16dp"
+                        android:text="تاریخ رفت"
+                        android:textColor="@color/black" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:src="@drawable/ic_calendar" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_Accept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_corner_orange"
-            android:text="تایید"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:layout_margin="0dp"
+            android:gravity="center"
+            android:padding="5dp">
 
+            <Button
+                android:id="@+id/btn_Accept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_corner_orange"
+                android:text="تایید"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</ScrollView>
