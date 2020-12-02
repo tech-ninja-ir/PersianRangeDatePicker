@@ -9,16 +9,14 @@
     <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
         android:id="@+id/dayOfMonthText"
         style="@style/DayOfMonthStyle"
-        android:text="0" />
+        android:text="0"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/imgEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/dayOfMonthText"
-        android:layout_alignRight="@+id/dayOfMonthText"
-        android:layout_alignBottom="@+id/dayOfMonthText"
-        android:layout_marginBottom="3dp"
+        android:layout_alignParentBottom="true"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/ic_vector_circle"
         tools:ignore="VectorDrawableCompat" />
