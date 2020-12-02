@@ -237,7 +237,8 @@ public class DateRangeCalendarView extends LinearLayout {
                     for (int j = 0; j < 7; j++) {
                         RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
                         DayContainer container = new DayContainer(rlDayContainer);
-                        container.tvDateGeorgian.setText("");
+                        container.tvDate.setVisibility(VISIBLE);
+                        container.tvDateGeorgian.setVisibility(INVISIBLE);
                     }
                 }
             }
@@ -254,7 +255,8 @@ public class DateRangeCalendarView extends LinearLayout {
                     for (int j = 0; j < 7; j++) {
                         RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
                         DayContainer container = new DayContainer(rlDayContainer);
-                        container.tvDate.setText("");
+                        container.tvDate.setVisibility(INVISIBLE);
+                        container.tvDateGeorgian.setVisibility(VISIBLE);
                     }
                 }
             }
@@ -646,7 +648,7 @@ public class DateRangeCalendarView extends LinearLayout {
         container.strip.setLayoutParams(layoutParams);
         GradientDrawable mDrawable = (GradientDrawable) ContextCompat.getDrawable(mContext, R.drawable.shape_circle);
         mDrawable.setColor(selectedDateCircleColor);
-        container.tvDate.setBackground(mDrawable);
+        container.rootView.setBackground(mDrawable);
         container.rootView.setBackgroundColor(Color.TRANSPARENT);
         container.tvDate.setTextColor(selectedDateColor);
 //        container.imgEvent.setColorFilter(selectedDateColor, PorterDuff.Mode.SRC_IN);
