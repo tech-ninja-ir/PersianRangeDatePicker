@@ -237,8 +237,7 @@ public class DateRangeCalendarView extends LinearLayout {
                     for (int j = 0; j < 7; j++) {
                         RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
                         DayContainer container = new DayContainer(rlDayContainer);
-                        container.tvDate.setVisibility(VISIBLE);
-                        container.tvDateGeorgian.setVisibility(GONE);
+                        container.tvDateGeorgian.setText("");
                     }
                 }
             }
@@ -255,8 +254,7 @@ public class DateRangeCalendarView extends LinearLayout {
                     for (int j = 0; j < 7; j++) {
                         RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
                         DayContainer container = new DayContainer(rlDayContainer);
-                        container.tvDate.setVisibility(GONE);
-                        container.tvDateGeorgian.setVisibility(VISIBLE);
+                        container.tvDate.setText("");
                     }
                 }
             }
@@ -586,9 +584,11 @@ public class DateRangeCalendarView extends LinearLayout {
      */
     private void enabledDayContainer(DayContainer container) {
         container.tvDate.setBackgroundColor(Color.TRANSPARENT);
+        container.tvDateGeorgian.setBackgroundColor(Color.TRANSPARENT);
         container.strip.setBackgroundColor(Color.TRANSPARENT);
         container.rootView.setBackgroundColor(Color.TRANSPARENT);
         container.tvDate.setTextColor(defaultDateColor);
+        container.tvDateGeorgian.setTextColor(defaultDateColor);
         container.rootView.setVisibility(VISIBLE);
         container.rootView.setOnClickListener(dayClickListener);
     }
