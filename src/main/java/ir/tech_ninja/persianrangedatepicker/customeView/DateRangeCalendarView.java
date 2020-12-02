@@ -30,8 +30,8 @@ import ir.tech_ninja.persianrangedatepicker.utils.PersianCalendar;
 
 public class DateRangeCalendarView extends LinearLayout {
     //region Fields
-    private Context mContext;
-    private AttributeSet attrs;
+    private final Context mContext;
+    private final AttributeSet attrs;
     private LinearLayout llDaysContainer;
     private LinearLayout llTitleWeekContainer;
     private CustomTextView tvYearTitle;
@@ -40,7 +40,7 @@ public class DateRangeCalendarView extends LinearLayout {
     private Locale locale;
 
     private PersianCalendar currentCalendarMonth, minSelectedDate, maxSelectedDate;
-    private ArrayList<Integer> selectedDatesRange = new ArrayList<>();
+    private final ArrayList<Integer> selectedDatesRange = new ArrayList<>();
     private Typeface typeface;
     private RelativeLayout rlHeaderCalendar;
 
@@ -52,7 +52,7 @@ public class DateRangeCalendarView extends LinearLayout {
     private boolean shouldEnabledTime = false;
     private float textSizeTitle, textSizeWeek, textSizeDate;
     private PersianCalendar selectedCal, date;
-    private boolean isHideHeader = false;
+    private final boolean isHideHeader = false;
     public static String selectedDay = "";
     //endregion
 
@@ -485,7 +485,13 @@ public class DateRangeCalendarView extends LinearLayout {
 
         container.tvDate.setText(String.valueOf(date));
         container.tvDateGeorgian.setText(String.valueOf(dateGR));
-        container.tvDateGeorgian.setVisibility(showGregorianDate ? VISIBLE : GONE);
+        if (showGregorianDate) {
+            container.tvDateGeorgian.setVisibility(VISIBLE);
+            container.tvDate.setVisibility(GONE);
+        } else {
+            container.tvDateGeorgian.setVisibility(GONE);
+            container.tvDate.setVisibility(VISIBLE);
+        }
         container.rootView.setTag(DayContainer.GetContainerKey(calendar));
     }
 

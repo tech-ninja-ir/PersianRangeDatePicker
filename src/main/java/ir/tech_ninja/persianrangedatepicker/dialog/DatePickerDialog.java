@@ -21,7 +21,7 @@ import ir.tech_ninja.persianrangedatepicker.utils.PersianCalendar;
 
 public class DatePickerDialog extends Dialog {
     //region Fields
-    private Context mContext;
+    private final Context mContext;
     private DateRangeCalendarView calendar;
     private Button btn_Accept;
     private TextView tvDate1, tvDate2;
@@ -67,6 +67,26 @@ public class DatePickerDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+
+        final Button btnShamsi = findViewById(R.id.btn_shamsi);
+        final Button btnMilady = findViewById(R.id.btn_milady);
+        btnShamsi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setShowGregorianDate(false);
+                btnShamsi.setBackgroundResource(R.drawable.round_corner_blue);
+                btnMilady.setBackgroundResource(R.drawable.round_corner_gray);
+            }
+        });
+
+        btnMilady.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setShowGregorianDate(true);
+                btnMilady.setBackgroundResource(R.drawable.round_corner_blue);
+                btnShamsi.setBackgroundResource(R.drawable.round_corner_gray);
             }
         });
 
