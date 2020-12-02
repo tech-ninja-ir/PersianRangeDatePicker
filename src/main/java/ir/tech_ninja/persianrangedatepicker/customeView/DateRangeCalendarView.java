@@ -229,13 +229,12 @@ public class DateRangeCalendarView extends LinearLayout {
         btnShamsi.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                setShowGregorianDate(false);
                 for (int i = 0; i < llDaysContainer.getChildCount(); i++) {
                     LinearLayout weekRow = (LinearLayout) llDaysContainer.getChildAt(i);
-
                     for (int j = 0; j < 7; j++) {
                         RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
                         DayContainer container = new DayContainer(rlDayContainer);
-
                         container.tvDate.setVisibility(VISIBLE);
                         container.tvDateGeorgian.setVisibility(GONE);
                     }
@@ -246,13 +245,12 @@ public class DateRangeCalendarView extends LinearLayout {
         btnMilady.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                setShowGregorianDate(true);
                 for (int i = 0; i < llDaysContainer.getChildCount(); i++) {
                     LinearLayout weekRow = (LinearLayout) llDaysContainer.getChildAt(i);
-
                     for (int j = 0; j < 7; j++) {
                         RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
                         DayContainer container = new DayContainer(rlDayContainer);
-
                         container.tvDate.setVisibility(GONE);
                         container.tvDateGeorgian.setVisibility(VISIBLE);
                     }
