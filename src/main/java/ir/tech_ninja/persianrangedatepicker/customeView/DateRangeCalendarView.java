@@ -240,7 +240,6 @@ public class DateRangeCalendarView extends LinearLayout {
                         DayContainer container = new DayContainer(rlDayContainer);
                         container.tvDate.setVisibility(VISIBLE);
                         container.tvDateGeorgian.setVisibility(INVISIBLE);
-                        makeAsSelectedDate(container, STRIP_TYPE_NONE);
                     }
                 }
             }
@@ -260,7 +259,6 @@ public class DateRangeCalendarView extends LinearLayout {
                         DayContainer container = new DayContainer(rlDayContainer);
                         container.tvDate.setVisibility(INVISIBLE);
                         container.tvDateGeorgian.setVisibility(VISIBLE);
-                        makeAsSelectedDate(container, STRIP_TYPE_NONE);
                     }
                 }
             }
@@ -516,7 +514,7 @@ public class DateRangeCalendarView extends LinearLayout {
 
             //---check date selected-------------------------------------------------------------
             if ((selectionMode == SelectionMode.Single.getValue()) && (selectedCal != null && calendar.getPersianShortDate().equals(selectedCal.getPersianShortDate()))) {
-                makeAsSelectedDate(container, STRIP_TYPE_LEFT);
+                makeAsSelectedDate(container, STRIP_TYPE_NONE);
             } else if ((selectionMode == SelectionMode.Range.getValue()) && (minSelectedDate != null && calendar.getPersianShortDate().equals(minSelectedDate.getPersianShortDate()))) {
                 makeAsSelectedDate(container, STRIP_TYPE_LEFT);
             }
