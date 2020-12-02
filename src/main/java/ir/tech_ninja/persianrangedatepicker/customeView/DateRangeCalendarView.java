@@ -229,6 +229,7 @@ public class DateRangeCalendarView extends LinearLayout {
         btnShamsi.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                resetAllSelectedViews();
                 btnShamsi.setBackgroundResource(R.drawable.round_corner_blue);
                 btnMilady.setBackgroundResource(R.drawable.round_corner_gray);
                 setShowGregorianDate(false);
@@ -247,6 +248,7 @@ public class DateRangeCalendarView extends LinearLayout {
         btnMilady.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                resetAllSelectedViews();
                 btnMilady.setBackgroundResource(R.drawable.round_corner_blue);
                 btnShamsi.setBackgroundResource(R.drawable.round_corner_gray);
                 setShowGregorianDate(true);
