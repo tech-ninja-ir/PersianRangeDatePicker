@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -38,6 +39,7 @@ public class DateRangeCalendarView extends LinearLayout {
     private TextView tvYearGeorgianTitle;
     private ImageView imgVNavLeft, imgVNavRight;
     private Locale locale;
+    private Button btnShamsi, btnMilady;
 
     private PersianCalendar currentCalendarMonth, minSelectedDate, maxSelectedDate;
     private final ArrayList<Integer> selectedDatesRange = new ArrayList<>();
@@ -168,6 +170,8 @@ public class DateRangeCalendarView extends LinearLayout {
         tvYearGeorgianTitle = mainView.findViewById(R.id.tvYearGeorgianTitle);
         imgVNavLeft = mainView.findViewById(R.id.imgVNavLeft);
         imgVNavRight = mainView.findViewById(R.id.imgVNavRight);
+        btnMilady = mainView.findViewById(R.id.btn_milady);
+        btnShamsi = mainView.findViewById(R.id.btn_shamsi);
 
         rlHeaderCalendar = mainView.findViewById(R.id.rlHeaderCalendar);
 
@@ -221,6 +225,41 @@ public class DateRangeCalendarView extends LinearLayout {
             }
         });
         //endregion
+
+        btnShamsi.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < llDaysContainer.getChildCount(); i++) {
+                    LinearLayout weekRow = (LinearLayout) llDaysContainer.getChildAt(i);
+
+                    for (int j = 0; j < 7; j++) {
+                        RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
+                        DayContainer container = new DayContainer(rlDayContainer);
+
+                        container.tvDate.setVisibility(VISIBLE);
+                        container.tvDateGeorgian.setVisibility(GONE);
+                    }
+                }
+            }
+        });
+
+        btnMilady.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < llDaysContainer.getChildCount(); i++) {
+                    LinearLayout weekRow = (LinearLayout) llDaysContainer.getChildAt(i);
+
+                    for (int j = 0; j < 7; j++) {
+                        RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
+                        DayContainer container = new DayContainer(rlDayContainer);
+
+                        container.tvDate.setVisibility(GONE);
+                        container.tvDateGeorgian.setVisibility(VISIBLE);
+                    }
+                }
+            }
+        });
+
     }
 
     private final OnClickListener dayClickListener = new OnClickListener() {

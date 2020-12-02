@@ -6,6 +6,33 @@
     android:background="@android:color/transparent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_milady"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corner_gray"
+            android:text="میلادی"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_shamsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corner_blue"
+            android:text="شمسی"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
     <include
         layout="@layout/layout_calendar_nav"
         android:layout_width="match_parent"

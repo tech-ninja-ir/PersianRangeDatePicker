@@ -70,28 +70,6 @@ public class DatePickerDialog extends Dialog {
             }
         });
 
-        final Button btnShamsi = findViewById(R.id.btn_shamsi);
-        final Button btnMilady = findViewById(R.id.btn_milady);
-        btnShamsi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setShowGregorianDate(false);
-                calendar.resetAllSelectedViews();
-                btnShamsi.setBackgroundResource(R.drawable.round_corner_blue);
-                btnMilady.setBackgroundResource(R.drawable.round_corner_gray);
-            }
-        });
-
-        btnMilady.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setShowGregorianDate(true);
-                calendar.resetAllSelectedViews();
-                btnMilady.setBackgroundResource(R.drawable.round_corner_blue);
-                btnShamsi.setBackgroundResource(R.drawable.round_corner_gray);
-            }
-        });
-
         acceptButtonColor = mContext.getColor(R.color.white);
 //        calendar = findViewById(R.id.calendar);
         //endregion
