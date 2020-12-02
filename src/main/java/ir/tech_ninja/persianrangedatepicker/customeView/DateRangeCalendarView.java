@@ -229,6 +229,8 @@ public class DateRangeCalendarView extends LinearLayout {
         btnShamsi.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnShamsi.setBackgroundResource(R.drawable.round_corner_blue);
+                btnMilady.setBackgroundResource(R.drawable.round_corner_gray);
                 setShowGregorianDate(false);
                 for (int i = 0; i < llDaysContainer.getChildCount(); i++) {
                     LinearLayout weekRow = (LinearLayout) llDaysContainer.getChildAt(i);
@@ -245,6 +247,8 @@ public class DateRangeCalendarView extends LinearLayout {
         btnMilady.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnMilady.setBackgroundResource(R.drawable.round_corner_blue);
+                btnShamsi.setBackgroundResource(R.drawable.round_corner_gray);
                 setShowGregorianDate(true);
                 for (int i = 0; i < llDaysContainer.getChildCount(); i++) {
                     LinearLayout weekRow = (LinearLayout) llDaysContainer.getChildAt(i);
