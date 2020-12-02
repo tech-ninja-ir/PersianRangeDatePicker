@@ -650,11 +650,12 @@ public class DateRangeCalendarView extends LinearLayout {
         mDrawable.setColor(selectedDateCircleColor);
         if (isShowGregorianDate()) {
             container.tvDateGeorgian.setBackground(mDrawable);
+            container.tvDateGeorgian.setTextColor(selectedDateColor);
         } else {
             container.tvDate.setBackground(mDrawable);
+            container.tvDate.setTextColor(selectedDateColor);
         }
         container.rootView.setBackgroundColor(Color.TRANSPARENT);
-        container.tvDate.setTextColor(selectedDateColor);
 //        container.imgEvent.setColorFilter(selectedDateColor, PorterDuff.Mode.SRC_IN);
         container.rootView.setVisibility(VISIBLE);
     }
@@ -666,11 +667,16 @@ public class DateRangeCalendarView extends LinearLayout {
      */
     private void makeAsRangeDate(DayContainer container) {
         container.tvDate.setBackgroundColor(Color.TRANSPARENT);
+        container.tvDateGeorgian.setBackgroundColor(Color.TRANSPARENT);
         GradientDrawable mDrawable = (GradientDrawable) ContextCompat.getDrawable(mContext, R.drawable.range_bg);
         mDrawable.setColor(rangeStripColor);
         container.strip.setBackground(mDrawable);
         container.rootView.setBackgroundColor(Color.TRANSPARENT);
-        container.tvDate.setTextColor(rangeDateColor);
+        if (isShowGregorianDate()) {
+            container.tvDateGeorgian.setTextColor(rangeDateColor);
+        } else {
+            container.tvDate.setTextColor(rangeDateColor);
+        }
 //        container.imgEvent.setColorFilter(rangeDateColor, android.graphics.PorterDuff.Mode.SRC_IN);
         container.rootView.setVisibility(VISIBLE);
 
@@ -1019,16 +1025,6 @@ public class DateRangeCalendarView extends LinearLayout {
     //endregion
     //endregion
     //--------------------------------------------------------------------------------------------
-
-    public void showShamsiDate(DayContainer container) {
-        container.tvDate.setVisibility(VISIBLE);
-        container.tvDateGeorgian.setVisibility(GONE);
-    }
-
-    public void showMiladyDate(DayContainer container) {
-        container.tvDate.setVisibility(GONE);
-        container.tvDateGeorgian.setVisibility(VISIBLE);
-    }
 
     public interface CalendarListener {
         void onDateSelected(PersianCalendar date);
