@@ -648,7 +648,11 @@ public class DateRangeCalendarView extends LinearLayout {
         container.strip.setLayoutParams(layoutParams);
         GradientDrawable mDrawable = (GradientDrawable) ContextCompat.getDrawable(mContext, R.drawable.shape_circle);
         mDrawable.setColor(selectedDateCircleColor);
-        container.rootView.setBackground(mDrawable);
+        if (isShowGregorianDate()) {
+            container.tvDateGeorgian.setBackground(mDrawable);
+        } else {
+            container.tvDate.setBackground(mDrawable);
+        }
         container.rootView.setBackgroundColor(Color.TRANSPARENT);
         container.tvDate.setTextColor(selectedDateColor);
 //        container.imgEvent.setColorFilter(selectedDateColor, PorterDuff.Mode.SRC_IN);
