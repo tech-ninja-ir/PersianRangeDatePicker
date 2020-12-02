@@ -971,6 +971,16 @@ public class DateRangeCalendarView extends LinearLayout {
     //endregion
     //--------------------------------------------------------------------------------------------
 
+    public void showShamsiDate(DayContainer container) {
+        container.tvDate.setVisibility(VISIBLE);
+        container.tvDateGeorgian.setVisibility(GONE);
+    }
+
+    public void showMiladyDate(DayContainer container) {
+        container.tvDate.setVisibility(GONE);
+        container.tvDateGeorgian.setVisibility(VISIBLE);
+    }
+
     public interface CalendarListener {
         void onDateSelected(PersianCalendar date);
 

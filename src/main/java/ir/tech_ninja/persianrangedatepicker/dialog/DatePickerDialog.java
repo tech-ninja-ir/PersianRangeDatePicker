@@ -76,6 +76,7 @@ public class DatePickerDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 setShowGregorianDate(false);
+                calendar.resetAllSelectedViews();
                 btnShamsi.setBackgroundResource(R.drawable.round_corner_blue);
                 btnMilady.setBackgroundResource(R.drawable.round_corner_gray);
             }
@@ -85,6 +86,7 @@ public class DatePickerDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 setShowGregorianDate(true);
+                calendar.resetAllSelectedViews();
                 btnMilady.setBackgroundResource(R.drawable.round_corner_blue);
                 btnShamsi.setBackgroundResource(R.drawable.round_corner_gray);
             }
