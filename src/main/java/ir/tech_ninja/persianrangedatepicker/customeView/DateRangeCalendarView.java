@@ -544,7 +544,7 @@ public class DateRangeCalendarView extends LinearLayout {
 //            container.tvDate.setTextColor(todayColor);
             container.tvDate.setTypeface(typeface, Typeface.BOLD);
         } else {
-            container.imgEvent.setVisibility(GONE);
+            container.imgEvent.setVisibility(INVISIBLE);
             container.tvDate.setTypeface(typeface, Typeface.NORMAL);
         }
     }
