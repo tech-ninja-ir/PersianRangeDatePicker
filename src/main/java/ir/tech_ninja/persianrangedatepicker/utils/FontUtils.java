@@ -5,7 +5,7 @@ import android.graphics.Typeface;
 import android.support.v4.util.SimpleArrayMap;
 
 public class FontUtils {
-    private static String FONT_NAME = "IRANSans";
+    private static final String FONT_NAME = "Yekan_Bakh_Medium";
 
     private static final SimpleArrayMap<String, Typeface> cache = new SimpleArrayMap<>();
 
