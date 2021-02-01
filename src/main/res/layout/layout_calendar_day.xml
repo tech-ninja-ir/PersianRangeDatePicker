@@ -26,6 +26,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="امروز"
+        android:textSize="10dp"
         android:textColor="@color/week_color" />
 
     <TextView
