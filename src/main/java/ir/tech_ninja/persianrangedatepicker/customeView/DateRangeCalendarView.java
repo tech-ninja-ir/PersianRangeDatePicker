@@ -232,7 +232,7 @@ public class DateRangeCalendarView extends LinearLayout {
                 resetAllSelectedViews();
                 changeCalendarType(isShowCalendarMilady);
 //                change state of isShowCalendarMilady
-                isShowCalendarMilady = false;
+                isShowCalendarMilady = !isShowCalendarMilady;
             }
         });
 

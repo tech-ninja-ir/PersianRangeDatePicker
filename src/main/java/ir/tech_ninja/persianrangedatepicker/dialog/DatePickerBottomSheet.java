@@ -221,7 +221,6 @@ public class DatePickerBottomSheet extends BottomSheetDialogFragment {
         insertPoint.addView(calendar);
 
         if (selectionMode.getValue() == DateRangeCalendarView.SelectionMode.Single.getValue()) {
-            btn_Accept.setVisibility(View.GONE);
             rlTwoWay.setVisibility(View.GONE);
             rlOneWay.setVisibility(View.VISIBLE);
         } else {
