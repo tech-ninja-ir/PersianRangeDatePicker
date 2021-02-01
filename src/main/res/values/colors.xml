@@ -4,20 +4,14 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="blue">#0075FF</color>
+    <color name="blue_dark">#0051B2</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="orange">#FF9800</color>
+    <color name="orange">#ff8121</color>
     <color name="gray">#E8E8E8</color>
     <color name="gray_dark">#C8C8C8</color>
     <color name="gray_Light">#F5F5F5</color>
 
-
-    <!--  datePicker color  -->
-    <!-- Header colors -->
-    <!--    <color name="headerBackgroundColor">#040078</color>-->
-    <!--Button colors-->
-    <!--    <color name="buttonBackgroundColor">@color/headerBackgroundColor</color>-->
-    <!-- Fonts -->
     <color name="date_color">#000</color>
     <color name="week_color">#717171</color>
     <!-- Calendar Date -->
@@ -29,9 +23,9 @@
     <color name="calendar_text">#474747</color>
     <color name="header_color">#e4215d</color>
     <color name="header_title_color">#ffffff</color>
-    <color name="holiday_date_color">#bf00bf</color>
+    <color name="holiday_date_color">#000000</color>
     <color name="event_date_color">#0097e2</color>
-    <color name="today_date_color">#51bf4b</color>
+    <color name="today_date_color">#717171</color>
     <color name="selected_date_circle_color">#0075FF</color>
     <color name="range_color">#ccddf7</color>
 

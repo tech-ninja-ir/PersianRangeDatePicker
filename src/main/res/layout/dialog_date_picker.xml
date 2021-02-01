@@ -1,62 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="8dp">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rl_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/choice_date"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_cancel" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/cl_choice_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_header"
+        android:background="@drawable/round_corner"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:padding="8dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/choice_date"
-                android:textColor="@color/black" />
-
-            <ImageView
-                android:id="@+id/iv_close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="8dp"
-                android:src="@drawable/ic_cancel" />
-
-        </RelativeLayout>
-
         <LinearLayout
-            android:id="@+id/cl_choice_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_corner"
+            android:layout_weight="0.1"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="8dp">
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/rl_return"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.1"
-                android:orientation="horizontal">
+                android:layout_weight="1">
 
                 <RelativeLayout
-                    android:id="@+id/rl_return"
+                    android:id="@+id/rl_one_way"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:id="@+id/v1"
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@color/gray" />
+
+                    <ImageView
+                        android:id="@+id/iv_return_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/v1"
+                        android:src="@drawable/ic_add"
+                        android:tint="@color/disable_date_color" />
+
+                    <TextView
+                        android:id="@+id/tv_add_return_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toStartOf="@+id/iv_return_date"
+                        android:text="تاریخ برگشت"
+                        android:textColor="@color/disable_date_color" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_two_way"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <View
                         android:layout_width="1dp"
-                        android:layout_height="0dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
                         android:background="@color/gray" />
 
                     <TextView
@@ -74,86 +113,88 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginTop="8dp"
                         android:layout_marginRight="8dp"
                         android:text="تاریخ برگشت"
+                        android:layout_below="@+id/tv_date_return_label"
                         android:textColor="@color/black" />
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/rl_went"
-                    android:layout_width="match_parent"
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_went"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_date_label"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:text="تاریخ رفت"
+                    android:textSize="8dp" />
 
-                    <TextView
-                        android:id="@+id/tv_date_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="16dp"
-                        android:text="تاریخ رفت"
-                        android:textSize="8dp" />
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="16dp"
+                    android:text="تاریخ رفت"
+                    android:textColor="@color/black" />
 
-                    <TextView
-                        android:id="@+id/tv_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginRight="16dp"
-                        android:text="تاریخ رفت"
-                        android:textColor="@color/black" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/iv_calendar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.9"
-                android:src="@drawable/ic_calendar" />
+            </RelativeLayout>
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/gray" />
-
-        <LinearLayout
-            android:id="@+id/content"
+        <ImageView
+            android:id="@+id/iv_calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_weight="0.9"
+            android:src="@drawable/ic_calendar" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lay_Accept"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:gravity="center"
-            android:padding="5dp">
-
-            <Button
-                android:id="@+id/btn_Accept"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_corner_orange"
-                android:text="تایید"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-        </LinearLayout>
     </LinearLayout>
 
-</ScrollView>
+    <View
+        android:id="@+id/v"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/cl_choice_date"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/v"
+        android:gravity="center"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/lay_Accept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="26dp"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/btn_Accept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corner_orange"
+            android:text="تایید"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</RelativeLayout>

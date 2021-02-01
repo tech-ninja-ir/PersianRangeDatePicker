@@ -39,7 +39,7 @@ public class DateRangeCalendarView extends LinearLayout {
     private TextView tvYearGeorgianTitle;
     private ImageView imgVNavLeft, imgVNavRight;
     private Locale locale;
-    private Button btnShamsi, btnMilady;
+    private Button btnChangeCalendarType;
 
     private PersianCalendar currentCalendarMonth, minSelectedDate, maxSelectedDate;
     private final ArrayList<Integer> selectedDatesRange = new ArrayList<>();
@@ -54,6 +54,7 @@ public class DateRangeCalendarView extends LinearLayout {
     private boolean shouldEnabledTime = false;
     private float textSizeTitle, textSizeWeek, textSizeDate;
     private PersianCalendar selectedCal, date;
+    private boolean isShowCalendarMilady = true;
     private final boolean isHideHeader = false;
     public static String selectedDay = "";
     //endregion
@@ -165,15 +166,14 @@ public class DateRangeCalendarView extends LinearLayout {
 
         LinearLayout mainView = (LinearLayout) layoutInflater.inflate(R.layout.layout_calendar_month, this, true);
         llDaysContainer = mainView.findViewById(R.id.llDaysContainer);
-        llTitleWeekContainer = mainView.findViewById(R.id.llTitleWeekContainer);
+        llTitleWeekContainer = mainView.findViewById(R.id.layout_calendar_week_days);
         tvYearTitle = mainView.findViewById(R.id.tvYearTitle);
         tvYearGeorgianTitle = mainView.findViewById(R.id.tvYearGeorgianTitle);
         imgVNavLeft = mainView.findViewById(R.id.imgVNavLeft);
         imgVNavRight = mainView.findViewById(R.id.imgVNavRight);
-        btnMilady = mainView.findViewById(R.id.btn_milady);
-        btnShamsi = mainView.findViewById(R.id.btn_shamsi);
+        btnChangeCalendarType = mainView.findViewById(R.id.btn_calendar_type);
 
-        rlHeaderCalendar = mainView.findViewById(R.id.rlHeaderCalendar);
+        rlHeaderCalendar = mainView.findViewById(R.id.layout_calendar_nav);
 
         setListeners();
 
@@ -226,44 +226,36 @@ public class DateRangeCalendarView extends LinearLayout {
         });
         //endregion
 
-        btnShamsi.setOnClickListener(new OnClickListener() {
+        btnChangeCalendarType.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 resetAllSelectedViews();
-                btnShamsi.setBackgroundResource(R.drawable.round_corner_blue);
-                btnMilady.setBackgroundResource(R.drawable.round_corner_gray);
-                setShowGregorianDate(false);
-                for (int i = 0; i < llDaysContainer.getChildCount(); i++) {
-                    LinearLayout weekRow = (LinearLayout) llDaysContainer.getChildAt(i);
-                    for (int j = 0; j < 7; j++) {
-                        RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
-                        DayContainer container = new DayContainer(rlDayContainer);
-                        container.tvDate.setVisibility(VISIBLE);
-                        container.tvDateGeorgian.setVisibility(INVISIBLE);
-                    }
-                }
+                changeCalendarType(isShowCalendarMilady);
+//                change state of isShowCalendarMilady
+                isShowCalendarMilady = false;
             }
         });
 
-        btnMilady.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetAllSelectedViews();
-                btnMilady.setBackgroundResource(R.drawable.round_corner_blue);
-                btnShamsi.setBackgroundResource(R.drawable.round_corner_gray);
-                setShowGregorianDate(true);
-                for (int i = 0; i < llDaysContainer.getChildCount(); i++) {
-                    LinearLayout weekRow = (LinearLayout) llDaysContainer.getChildAt(i);
-                    for (int j = 0; j < 7; j++) {
-                        RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
-                        DayContainer container = new DayContainer(rlDayContainer);
-                        container.tvDate.setVisibility(INVISIBLE);
-                        container.tvDateGeorgian.setVisibility(VISIBLE);
-                    }
+    }
+
+    private void changeCalendarType(boolean isMilady) {
+        setShowGregorianDate(isMilady);
+        for (int i = 0; i < llDaysContainer.getChildCount(); i++) {
+            LinearLayout weekRow = (LinearLayout) llDaysContainer.getChildAt(i);
+            for (int j = 0; j < 7; j++) {
+                RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
+                DayContainer container = new DayContainer(rlDayContainer);
+                if (isMilady) {
+                    container.tvDate.setVisibility(INVISIBLE);
+                    container.tvDateGeorgian.setVisibility(VISIBLE);
+                    btnChangeCalendarType.setText("تقویم شمسی");
+                } else {
+                    container.tvDate.setVisibility(VISIBLE);
+                    container.tvDateGeorgian.setVisibility(INVISIBLE);
+                    btnChangeCalendarType.setText("تقویم میلادی");
                 }
             }
-        });
-
+        }
     }
 
     private final OnClickListener dayClickListener = new OnClickListener() {
@@ -542,11 +534,13 @@ public class DateRangeCalendarView extends LinearLayout {
     private void setToday(DayContainer container, PersianCalendar persianCalendar) {
         if (getCurrentDate().getPersianShortDate().compareTo(persianCalendar.getPersianShortDate()) == 0) {
             container.imgEvent.setVisibility(VISIBLE);
+            container.tvCurrentDay.setVisibility(VISIBLE);
             container.imgEvent.setColorFilter(todayColor, android.graphics.PorterDuff.Mode.SRC_IN);
 //            container.tvDate.setTextColor(todayColor);
             container.tvDate.setTypeface(typeface, Typeface.BOLD);
         } else {
             container.imgEvent.setVisibility(INVISIBLE);
+            container.tvCurrentDay.setVisibility(INVISIBLE);
             container.tvDate.setTypeface(typeface, Typeface.NORMAL);
         }
     }

@@ -11,7 +11,7 @@ import ir.tech_ninja.persianrangedatepicker.utils.PersianCalendar;
 public class DayContainer {
     public RelativeLayout rootView;
     public CustomTextView tvDate;
-    public TextView tvDateGeorgian;
+    public TextView tvDateGeorgian, tvCurrentDay;
     public AppCompatImageView imgEvent;
     public View strip;
 
@@ -19,8 +19,9 @@ public class DayContainer {
         this.rootView = rootView;
         strip = rootView.getChildAt(0);
         tvDate = (CustomTextView) rootView.getChildAt(1);
-        tvDateGeorgian = (TextView) rootView.getChildAt(3);
+        tvDateGeorgian = (TextView) rootView.getChildAt(4);
         imgEvent = (AppCompatImageView) rootView.getChildAt(2);
+        tvCurrentDay = (TextView) rootView.getChildAt(3);
     }
 
     public static int GetContainerKey(PersianCalendar cal) {

@@ -1,44 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@android:color/transparent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_milady"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_corner_gray"
-            android:text="میلادی"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/btn_shamsi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_corner_blue"
-            android:text="شمسی"
-            android:textColor="@color/white" />
-
-    </LinearLayout>
-
     <include
+        android:id="@+id/layout_calendar_nav"
         layout="@layout/layout_calendar_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <include
+        android:id="@+id/layout_calendar_week_days"
         layout="@layout/layout_calendar_week_days"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -89,9 +64,18 @@
 
     </LinearLayout>
 
-    <!--<View -->
-    <!--android:layout_width="wrap_content" -->
-    <!--android:layout_height="1dp" -->
-    <!--android:background="@drawable/horizontal_line_with_gradient" /> -->
+    <Button
+        android:id="@+id/btn_calendar_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_white_border_blue"
+        android:text="تویم میلادی"
+        android:textColor="@color/blue_dark" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/gray_dark" />
 
 </LinearLayout>

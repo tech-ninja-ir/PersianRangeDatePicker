@@ -1,95 +1,134 @@
 package ir.tech_ninja.persianrangedatepicker.dialog;
 
+import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
-import android.view.Gravity;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.BottomSheetDialogFragment;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sardari.ali.persianrangedatepicker.R;
 
 import ir.tech_ninja.persianrangedatepicker.customeView.DateRangeCalendarView;
-import ir.tech_ninja.persianrangedatepicker.utils.FontUtils;
 import ir.tech_ninja.persianrangedatepicker.utils.MyUtils;
 import ir.tech_ninja.persianrangedatepicker.utils.PersianCalendar;
 
-public class DatePickerDialog extends Dialog {
-    //region Fields
-    private final Context mContext;
-    private DateRangeCalendarView calendar;
+public class DatePickerBottomSheet extends BottomSheetDialogFragment {
+
+    public static String TAG = "DatePickerBottomSheet";
     private Button btn_Accept;
     private TextView tvDate1, tvDate2;
     private RelativeLayout rlReturn;
+    private int acceptButtonColor, headerBackgroundColor, weekColor, rangeStripColor, selectedDateCircleColor, selectedDateColor,
+            defaultDateColor, disableDateColor, rangeDateColor, holidayColor, todayColor;
+    private DateRangeCalendarView calendar;
     private PersianCalendar date, startDate, endDate;
-    private Typeface typeface;
-    //endregion
-    //region theme
-    private int acceptButtonColor, headerBackgroundColor, weekColor, rangeStripColor, selectedDateCircleColor, selectedDateColor, defaultDateColor, disableDateColor, rangeDateColor, holidayColor, todayColor;
-    private float textSizeTitle, textSizeWeek, textSizeDate;
     //region SelectionMode -> Default = Range | Enum -> {Single(1),Range(2),None(3)}
     private DateRangeCalendarView.SelectionMode selectionMode = DateRangeCalendarView.SelectionMode.Range;
     private DatePickerDialog.OnSingleDateSelectedListener onSingleDateSelectedListener;
     private DatePickerDialog.OnRangeDateSelectedListener onRangeDateSelectedListener;
     private boolean disableDaysAgo = true;
+    private Typeface typeface;
     private PersianCalendar currentDate = new PersianCalendar();
     private PersianCalendar minDate;
     private PersianCalendar maxDate;
     private boolean enableTimePicker = false;
     private boolean showGregorianDate = false;
+    private float textSizeTitle, textSizeWeek, textSizeDate;
+    private ViewGroup insertPoint;
+    private RelativeLayout rlTwoWay, rlOneWay;
 
-    public DatePickerDialog(Context context) {
-        super(context);
-        mContext = context;
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        if (getWindow() != null)
-            getWindow().setGravity(Gravity.CENTER);
-
-        this.typeface = FontUtils.Default(mContext);
-
-        initView();
-
-        //Grab the window of the dialog, and change the width
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        Window window = this.getWindow();
-        lp.copyFrom(window.getAttributes());
-        //This makes the dialog take up the full width
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        window.setAttributes(lp);
-
-        PersianCalendar today = new PersianCalendar();
-        setCurrentDate(today);
+    public static DatePickerBottomSheet newInstance() {
+        return new DatePickerBottomSheet();
     }
 
-    private void initView() {
-        //region init View & Font
-        setContentView(R.layout.dialog_date_picker);
 
-        btn_Accept = findViewById(R.id.btn_Accept);
-        tvDate1 = findViewById(R.id.tv_date);
-        tvDate2 = findViewById(R.id.tv_date_return);
-        rlReturn = findViewById(R.id.rl_return);
-        findViewById(R.id.iv_close).setOnClickListener(new View.OnClickListener() {
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.dialog_date_picker, container,
+                false);
+
+        btn_Accept = view.findViewById(R.id.btn_Accept);
+        tvDate1 = view.findViewById(R.id.tv_date);
+        tvDate2 = view.findViewById(R.id.tv_date_return);
+        rlReturn = view.findViewById(R.id.rl_return);
+        insertPoint = view.findViewById(R.id.content);
+        rlTwoWay = view.findViewById(R.id.rl_two_way);
+        rlOneWay = view.findViewById(R.id.rl_one_way);
+
+        view.findViewById(R.id.iv_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
             }
         });
 
-        acceptButtonColor = mContext.getColor(R.color.white);
-//        calendar = findViewById(R.id.calendar);
-        //endregion
+        acceptButtonColor = getActivity().getColor(R.color.white);
+
+        return view;
+
     }
 
-    public void showDialog() {
-        calendar = new DateRangeCalendarView(mContext);
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialogInterface;
+                setupFullHeight(bottomSheetDialog);
+            }
+        });
+        return dialog;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        showCalendar();
+
+    }
+
+    private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
+        FrameLayout bottomSheet = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+        ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+
+        int windowHeight = getWindowHeight();
+        if (layoutParams != null) {
+            layoutParams.height = windowHeight;
+        }
+        bottomSheet.setLayoutParams(layoutParams);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+    }
+
+    private int getWindowHeight() {
+        // Calculate window height for fullscreen use
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
+
+    public void showCalendar() {
+        calendar = new DateRangeCalendarView(getActivity());
         calendar.setCalendarListener(new DateRangeCalendarView.CalendarListener() {
             @Override
             public void onDateSelected(PersianCalendar _date) {
@@ -123,7 +162,7 @@ public class DatePickerDialog extends Dialog {
 
                         dismiss();
                     } else {
-                        MyUtils.getInstance().Toast(mContext, "لطفا یک تاریخ انتخاب کنید");
+                        MyUtils.getInstance().Toast(getActivity(), "لطفا یک تاریخ انتخاب کنید");
                     }
                     //endregion
                 } else if (selectionMode == DateRangeCalendarView.SelectionMode.Range) {
@@ -136,10 +175,10 @@ public class DatePickerDialog extends Dialog {
 
                             dismiss();
                         } else {
-                            MyUtils.getInstance().Toast(mContext, "لطفا بازه زمانی را مشخص کنید");
+                            MyUtils.getInstance().Toast(getActivity(), "لطفا بازه زمانی را مشخص کنید");
                         }
                     } else {
-                        MyUtils.getInstance().Toast(mContext, "لطفا بازه زمانی را مشخص کنید");
+                        MyUtils.getInstance().Toast(getActivity(), "لطفا بازه زمانی را مشخص کنید");
                     }
                     //endregion
                 }
@@ -175,23 +214,20 @@ public class DatePickerDialog extends Dialog {
         calendar.setAttributes();
         calendar.build();
 
-        ViewGroup insertPoint = findViewById(R.id.content);
-
         if (insertPoint.getChildCount() > 0) {
             insertPoint.removeAllViews();
         }
 
         insertPoint.addView(calendar);
 
-
-        if (selectionMode.getValue() == DateRangeCalendarView.SelectionMode.None.getValue()) {
+        if (selectionMode.getValue() == DateRangeCalendarView.SelectionMode.Single.getValue()) {
             btn_Accept.setVisibility(View.GONE);
-            rlReturn.setVisibility(View.INVISIBLE);
+            rlTwoWay.setVisibility(View.GONE);
+            rlOneWay.setVisibility(View.VISIBLE);
         } else {
-            rlReturn.setVisibility(View.VISIBLE);
+            rlTwoWay.setVisibility(View.VISIBLE);
+            rlOneWay.setVisibility(View.GONE);
         }
-
-        this.show();
     }
 
     //region Properties
@@ -415,17 +451,4 @@ public class DatePickerDialog extends Dialog {
 
     //endregion
 
-    //region Listeners -> Interface
-    public interface OnSingleDateSelectedListener {
-        void onSingleDateSelected(PersianCalendar date);
-    }
-
-    public interface OnRangeDateSelectedListener {
-        void onRangeDateSelected(PersianCalendar startDate, PersianCalendar endDate);
-    }
-
-//    public interface OnMultipleDateSelectedListener {
-//        void onMultipleDateSelected(ArrayList<PersianCalendar> startDate);
-//    }
-    //endregion
 }
