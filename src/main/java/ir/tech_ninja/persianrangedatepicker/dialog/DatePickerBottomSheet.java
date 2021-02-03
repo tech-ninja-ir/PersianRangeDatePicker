@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,7 +22,11 @@ import android.widget.TextView;
 
 import com.sardari.ali.persianrangedatepicker.R;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import ir.tech_ninja.persianrangedatepicker.customeView.DateRangeCalendarView;
+import ir.tech_ninja.persianrangedatepicker.utils.JalaliCalendar;
 import ir.tech_ninja.persianrangedatepicker.utils.MyUtils;
 import ir.tech_ninja.persianrangedatepicker.utils.PersianCalendar;
 
@@ -34,7 +39,8 @@ public class DatePickerBottomSheet extends BottomSheetDialogFragment {
     private int acceptButtonColor, headerBackgroundColor, weekColor, rangeStripColor, selectedDateCircleColor, selectedDateColor,
             defaultDateColor, disableDateColor, rangeDateColor, holidayColor, todayColor;
     private DateRangeCalendarView calendar;
-    private PersianCalendar date, startDate, endDate;
+    private PersianCalendar persianDate, persianStartDate, persianEndDate;
+    private Date date, startDate, endDate;
     //region SelectionMode -> Default = Range | Enum -> {Single(1),Range(2),None(3)}
     private DateRangeCalendarView.SelectionMode selectionMode = DateRangeCalendarView.SelectionMode.Range;
     private DatePickerDialog.OnSingleDateSelectedListener onSingleDateSelectedListener;
@@ -79,7 +85,9 @@ public class DatePickerBottomSheet extends BottomSheetDialogFragment {
             }
         });
 
-        acceptButtonColor = getActivity().getColor(R.color.white);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            acceptButtonColor = getActivity().getColor(R.color.white);
+        }
 
         return view;
 
@@ -132,16 +140,38 @@ public class DatePickerBottomSheet extends BottomSheetDialogFragment {
         calendar.setCalendarListener(new DateRangeCalendarView.CalendarListener() {
             @Override
             public void onDateSelected(PersianCalendar _date) {
-                date = _date;
-                tvDate1.setText(_date.getPersianWeekDayName() + " " + _date.getPersianDay() + " " + _date.getPersianMonthName());
+                persianDate = _date;
+
+                JalaliCalendar jalaliCalendar = new JalaliCalendar();
+                date = jalaliCalendar.getGregorianDate(_date.getPersianShortDate());
+                if (calendar.isShowCalendarMilady) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(date);
+                    tvDate1.setText(_date.getPersianWeekDayName() + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + MyUtils.getMiladyMonthName(calendar.get(Calendar.MONTH) + 1));
+                } else {
+                    tvDate1.setText(_date.getPersianWeekDayName() + " " + _date.getPersianDay() + " " + _date.getPersianMonthName());
+                }
             }
 
             @Override
             public void onDateRangeSelected(PersianCalendar _startDate, PersianCalendar _endDate) {
-                startDate = _startDate;
-                endDate = _endDate;
-                tvDate1.setText(_startDate.getPersianWeekDayName() + " " + _startDate.getPersianDay() + " " + _startDate.getPersianMonthName());
-                tvDate2.setText(_endDate.getPersianWeekDayName() + " " + _endDate.getPersianDay() + " " + _endDate.getPersianMonthName());
+                persianStartDate = _startDate;
+                persianEndDate = _endDate;
+
+                JalaliCalendar jalaliCalendar = new JalaliCalendar();
+                startDate = jalaliCalendar.getGregorianDate(_startDate.getPersianShortDate());
+                endDate = jalaliCalendar.getGregorianDate(_endDate.getPersianShortDate());
+
+                if (calendar.isShowCalendarMilady) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(startDate);
+                    tvDate1.setText(_startDate.getPersianWeekDayName() + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + MyUtils.getMiladyMonthName(calendar.get(Calendar.MONTH)) + 1);
+                    calendar.setTime(endDate);
+                    tvDate2.setText(_endDate.getPersianWeekDayName() + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + MyUtils.getMiladyMonthName(calendar.get(Calendar.MONTH)) + 1);
+                } else {
+                    tvDate1.setText(_startDate.getPersianWeekDayName() + " " + _startDate.getPersianDay() + " " + _startDate.getPersianMonthName());
+                    tvDate2.setText(_endDate.getPersianWeekDayName() + " " + _endDate.getPersianDay() + " " + _endDate.getPersianMonthName());
+                }
             }
 
             @Override
@@ -155,9 +185,9 @@ public class DatePickerBottomSheet extends BottomSheetDialogFragment {
             public void onClick(View v) {
                 if (selectionMode == DateRangeCalendarView.SelectionMode.Single) {
                     //region SelectionMode.Single
-                    if (date != null) {
+                    if (persianDate != null) {
                         if (onSingleDateSelectedListener != null) {
-                            onSingleDateSelectedListener.onSingleDateSelected(date);
+                            onSingleDateSelectedListener.onSingleDateSelected(persianDate, date, calendar.isShowCalendarMilady);
                         }
 
                         dismiss();
@@ -167,10 +197,10 @@ public class DatePickerBottomSheet extends BottomSheetDialogFragment {
                     //endregion
                 } else if (selectionMode == DateRangeCalendarView.SelectionMode.Range) {
                     //region SelectionMode.Range
-                    if (startDate != null) {
-                        if (endDate != null) {
+                    if (persianStartDate != null) {
+                        if (persianEndDate != null) {
                             if (onRangeDateSelectedListener != null) {
-                                onRangeDateSelectedListener.onRangeDateSelected(startDate, endDate);
+                                onRangeDateSelectedListener.onRangeDateSelected(persianStartDate, persianEndDate, startDate, endDate, calendar.isShowCalendarMilady);
                             }
 
                             dismiss();

@@ -19,4 +19,35 @@ public class MyUtils {
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
+
+    public static String getMiladyMonthName(int month) {
+        switch (month) {
+            case 1:
+                return "ژانویه";
+            case 2:
+                return "فوریه";
+            case 3:
+                return "مارس";
+            case 4:
+                return "آوریل";
+            case 5:
+                return "می";
+            case 6:
+                return "ژوئن";
+            case 7:
+                return "جولای";
+            case 8:
+                return "آگوست";
+            case 9:
+                return "سپتامبر";
+            case 10:
+                return "اکتبر";
+            case 11:
+                return "نوامبر";
+            case 12:
+                return "دسامبر";
+        }
+        return "";
+    }
+
 }

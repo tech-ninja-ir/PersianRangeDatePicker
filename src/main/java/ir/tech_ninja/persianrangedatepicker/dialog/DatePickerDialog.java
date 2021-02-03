@@ -3,6 +3,7 @@ package ir.tech_ninja.persianrangedatepicker.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sardari.ali.persianrangedatepicker.R;
+
+import java.util.Date;
 
 import ir.tech_ninja.persianrangedatepicker.customeView.DateRangeCalendarView;
 import ir.tech_ninja.persianrangedatepicker.utils.FontUtils;
@@ -26,7 +29,8 @@ public class DatePickerDialog extends Dialog {
     private Button btn_Accept;
     private TextView tvDate1, tvDate2;
     private RelativeLayout rlReturn;
-    private PersianCalendar date, startDate, endDate;
+    private PersianCalendar persianDate, persianStartDate, persianEndDate;
+    private Date date, startDate, endDate;
     private Typeface typeface;
     //endregion
     //region theme
@@ -83,7 +87,9 @@ public class DatePickerDialog extends Dialog {
             }
         });
 
-        acceptButtonColor = mContext.getColor(R.color.white);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            acceptButtonColor = mContext.getColor(R.color.white);
+        }
 //        calendar = findViewById(R.id.calendar);
         //endregion
     }
@@ -93,14 +99,14 @@ public class DatePickerDialog extends Dialog {
         calendar.setCalendarListener(new DateRangeCalendarView.CalendarListener() {
             @Override
             public void onDateSelected(PersianCalendar _date) {
-                date = _date;
+                persianDate = _date;
                 tvDate1.setText(_date.getPersianWeekDayName() + " " + _date.getPersianDay() + " " + _date.getPersianMonthName());
             }
 
             @Override
             public void onDateRangeSelected(PersianCalendar _startDate, PersianCalendar _endDate) {
-                startDate = _startDate;
-                endDate = _endDate;
+                persianStartDate = _startDate;
+                persianEndDate = _endDate;
                 tvDate1.setText(_startDate.getPersianWeekDayName() + " " + _startDate.getPersianDay() + " " + _startDate.getPersianMonthName());
                 tvDate2.setText(_endDate.getPersianWeekDayName() + " " + _endDate.getPersianDay() + " " + _endDate.getPersianMonthName());
             }
@@ -116,9 +122,9 @@ public class DatePickerDialog extends Dialog {
             public void onClick(View v) {
                 if (selectionMode == DateRangeCalendarView.SelectionMode.Single) {
                     //region SelectionMode.Single
-                    if (date != null) {
+                    if (persianDate != null) {
                         if (onSingleDateSelectedListener != null) {
-                            onSingleDateSelectedListener.onSingleDateSelected(date);
+                            onSingleDateSelectedListener.onSingleDateSelected(persianDate, date, calendar.isShowCalendarMilady);
                         }
 
                         dismiss();
@@ -128,10 +134,10 @@ public class DatePickerDialog extends Dialog {
                     //endregion
                 } else if (selectionMode == DateRangeCalendarView.SelectionMode.Range) {
                     //region SelectionMode.Range
-                    if (startDate != null) {
-                        if (endDate != null) {
+                    if (persianStartDate != null) {
+                        if (persianEndDate != null) {
                             if (onRangeDateSelectedListener != null) {
-                                onRangeDateSelectedListener.onRangeDateSelected(startDate, endDate);
+                                onRangeDateSelectedListener.onRangeDateSelected(persianStartDate, persianEndDate, startDate, endDate, calendar.isShowCalendarMilady);
                             }
 
                             dismiss();
@@ -417,11 +423,11 @@ public class DatePickerDialog extends Dialog {
 
     //region Listeners -> Interface
     public interface OnSingleDateSelectedListener {
-        void onSingleDateSelected(PersianCalendar date);
+        void onSingleDateSelected(PersianCalendar persianCalendar, Date date, boolean isSelectedMiladyDate);
     }
 
     public interface OnRangeDateSelectedListener {
-        void onRangeDateSelected(PersianCalendar startDate, PersianCalendar endDate);
+        void onRangeDateSelected(PersianCalendar startPersianDate, PersianCalendar endPersianDate, Date startDate, Date endDate, boolean isSelectedMiladyDate);
     }
 
 //    public interface OnMultipleDateSelectedListener {

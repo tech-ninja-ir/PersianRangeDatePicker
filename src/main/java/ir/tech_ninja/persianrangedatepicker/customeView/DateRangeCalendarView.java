@@ -54,7 +54,7 @@ public class DateRangeCalendarView extends LinearLayout {
     private boolean shouldEnabledTime = false;
     private float textSizeTitle, textSizeWeek, textSizeDate;
     private PersianCalendar selectedCal, date;
-    private boolean isShowCalendarMilady = true;
+    public boolean isShowCalendarMilady = false;
     private final boolean isHideHeader = false;
     public static String selectedDay = "";
     //endregion
@@ -229,10 +229,10 @@ public class DateRangeCalendarView extends LinearLayout {
         btnChangeCalendarType.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                // change state of isShowCalendarMilady
+                isShowCalendarMilady = !isShowCalendarMilady;
                 resetAllSelectedViews();
                 changeCalendarType(isShowCalendarMilady);
-//                change state of isShowCalendarMilady
-                isShowCalendarMilady = !isShowCalendarMilady;
             }
         });
 
@@ -401,7 +401,8 @@ public class DateRangeCalendarView extends LinearLayout {
      * @param month
      */
     private void drawCalendarForMonth(PersianCalendar month) {
-        tvYearTitle.setTextSize(textSizeTitle);
+        tvYearTitle.setTextSize(18);
+        tvYearGeorgianTitle.setTextSize(17);
 
         tvYearTitle.setText(String.format(locale, "%s %d", month.getPersianMonthName(), month.getPersianYear()));
 
