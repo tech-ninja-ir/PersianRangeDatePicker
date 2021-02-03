@@ -72,10 +72,4 @@
         android:text="تقویم میلادی"
         android:textColor="@color/blue_dark" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/gray_dark" />
-
 </LinearLayout>

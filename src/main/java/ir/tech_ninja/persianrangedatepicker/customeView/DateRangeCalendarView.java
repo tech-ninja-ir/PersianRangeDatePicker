@@ -249,10 +249,14 @@ public class DateRangeCalendarView extends LinearLayout {
                     container.tvDate.setVisibility(INVISIBLE);
                     container.tvDateGeorgian.setVisibility(VISIBLE);
                     btnChangeCalendarType.setText("تقویم شمسی");
+                    tvYearGeorgianTitle.setVisibility(VISIBLE);
+                    tvYearTitle.setVisibility(GONE);
                 } else {
                     container.tvDate.setVisibility(VISIBLE);
                     container.tvDateGeorgian.setVisibility(INVISIBLE);
                     btnChangeCalendarType.setText("تقویم میلادی");
+                    tvYearGeorgianTitle.setVisibility(GONE);
+                    tvYearTitle.setVisibility(VISIBLE);
                 }
             }
         }

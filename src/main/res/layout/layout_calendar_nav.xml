@@ -39,16 +39,11 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text=" - " />
-
-        <TextView
             android:id="@+id/tvYearGeorgianTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:visibility="gone"
             android:text="June - July"
             android:textColor="@color/black" />
 
