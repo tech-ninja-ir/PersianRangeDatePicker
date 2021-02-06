@@ -57,6 +57,7 @@ public class DateRangeCalendarView extends LinearLayout {
     public boolean isShowCalendarMilady = false;
     private final boolean isHideHeader = false;
     public static String selectedDay = "";
+    private PersianCalendar selectedDate;
     //endregion
 
     //region Enum
@@ -274,6 +275,7 @@ public class DateRangeCalendarView extends LinearLayout {
 
             if (selectionMode == SelectionMode.Single.getValue()) {
                 //region SelectionMode.Single
+                setSelectedDate(null);
                 resetAllSelectedViews();
                 makeAsSelectedDate(container, 0);
 
@@ -523,6 +525,8 @@ public class DateRangeCalendarView extends LinearLayout {
             }
         }
 
+        setSelectedDate(container, calendar);
+
         container.tvDate.setText(String.valueOf(date));
         container.tvDateGeorgian.setText(String.valueOf(dateGR));
         if (showGregorianDate) {
@@ -547,6 +551,54 @@ public class DateRangeCalendarView extends LinearLayout {
             container.imgEvent.setVisibility(INVISIBLE);
             container.tvCurrentDay.setVisibility(INVISIBLE);
             container.tvDate.setTypeface(typeface, Typeface.NORMAL);
+        }
+    }
+
+    public PersianCalendar getSelectedDate() {
+        return this.selectedDate;
+    }
+
+    public void setSelectedDate(PersianCalendar selectedDate) {
+        this.selectedDate = selectedDate;
+    }
+
+    private void setSelectedDate(DayContainer container, PersianCalendar persianCalendar) {
+        if (getSelectedDate() != null && getSelectedDate().getPersianShortDate().compareTo(persianCalendar.getPersianShortDate()) == 0) {
+            GradientDrawable mDrawable = (GradientDrawable) ContextCompat.getDrawable(mContext, R.drawable.shape_circle);
+            mDrawable.setColor(selectedDateCircleColor);
+            if (isShowGregorianDate()) {
+                container.tvDateGeorgian.setBackground(mDrawable);
+                container.tvDateGeorgian.setTextColor(selectedDateColor);
+                Log.e("zzz", "1");
+            } else {
+                container.tvDate.setBackground(mDrawable);
+                container.tvDate.setTextColor(selectedDateColor);
+                Log.e("zzz", "2");
+            }
+
+            selectedCal = getSelectedDate();
+            PersianCalendar p = (PersianCalendar) selectedCal.clone();
+
+            selectedCal.set(Calendar.HOUR, 0);
+            selectedCal.set(Calendar.MINUTE, 0);
+            selectedCal.set(Calendar.SECOND, 0);
+            selectedCal.set(Calendar.MILLISECOND, 0);
+            selectedCal.setPersianDate(p.getPersianYear(), p.getPersianMonth(), p.getPersianDay());
+
+            if (calendarListener != null) {
+                calendarListener.onDateSelected(selectedCal);
+            }
+
+        } else {
+            GradientDrawable mDrawable = (GradientDrawable) ContextCompat.getDrawable(mContext, R.drawable.shape_circle_transparent);
+            mDrawable.setColor(getResources().getColor(android.R.color.transparent));
+            if (isShowGregorianDate()) {
+                container.tvDateGeorgian.setBackground(mDrawable);
+                container.tvDateGeorgian.setTextColor(defaultDateColor);
+            } else {
+                container.tvDate.setBackground(mDrawable);
+                container.tvDate.setTextColor(defaultDateColor);
+            }
         }
     }
 
