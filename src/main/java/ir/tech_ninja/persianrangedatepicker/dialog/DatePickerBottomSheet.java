@@ -48,7 +48,8 @@ public class DatePickerBottomSheet extends BottomSheetDialogFragment {
     private boolean disableDaysAgo = true;
     private Typeface typeface;
     private PersianCalendar currentDate = new PersianCalendar();
-    private PersianCalendar selectedDate = null;
+    private PersianCalendar selectedDate1 = null;
+    private PersianCalendar selectedDate2 = null;
     private PersianCalendar minDate;
     private PersianCalendar maxDate;
     private boolean enableTimePicker = false;
@@ -241,8 +242,11 @@ public class DatePickerBottomSheet extends BottomSheetDialogFragment {
         calendar.setTextSizeWeek(textSizeWeek);
         calendar.setTextSizeDate(textSizeDate);
 
-        if (selectedDate != null)
-            calendar.setSelectedDate(selectedDate);
+        if (selectedDate1 != null)
+            calendar.setSelectedDate(selectedDate1);
+
+        if (selectedDate2 != null)
+            calendar.setSelectedDateEnd(selectedDate2);
 
         //init
         calendar.setAttributes();
@@ -302,12 +306,12 @@ public class DatePickerBottomSheet extends BottomSheetDialogFragment {
         this.currentDate = currentDate;
     }
 
-    public PersianCalendar getSelectedDate() {
-        return this.selectedDate;
+    public void setSelectedDate(PersianCalendar selectedDate) {
+        this.selectedDate1 = selectedDate;
     }
 
-    public void setSelectedDate(PersianCalendar selectedDate) {
-        this.selectedDate = selectedDate;
+    public void setSelectedDateEnd(PersianCalendar selectedDate) {
+        this.selectedDate2 = selectedDate;
     }
 
     //endregion
