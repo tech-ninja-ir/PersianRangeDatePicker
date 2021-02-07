@@ -531,8 +531,18 @@ public class DateRangeCalendarView extends LinearLayout {
         }
 
         if ((selectionMode == SelectionMode.Single.getValue()) && (getSelectedDate() != null && calendar.getPersianShortDate().equals(getSelectedDate().getPersianShortDate()))) {
+
+            if (calendarListener != null) {
+                calendarListener.onDateSelected(getSelectedDate());
+            }
+
             makeAsSelectedDate(container, STRIP_TYPE_NONE);
         } else if ((selectionMode == SelectionMode.Range.getValue()) && (getSelectedDateEnd() != null && getSelectedDate() != null)) {
+
+            if (calendarListener != null) {
+                calendarListener.onDateRangeSelected(getSelectedDate(), getSelectedDateEnd());
+            }
+
             minSelectedDate = getSelectedDate();
             maxSelectedDate = getSelectedDateEnd();
             drawSelectedDateRange(getSelectedDate(), getSelectedDateEnd());
