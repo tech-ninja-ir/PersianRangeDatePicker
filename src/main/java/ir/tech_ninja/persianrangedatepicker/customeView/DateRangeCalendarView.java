@@ -530,7 +530,10 @@ public class DateRangeCalendarView extends LinearLayout {
             }
         }
 
-        if ((selectionMode == SelectionMode.Single.getValue()) && (getSelectedDate() != null && calendar.getPersianShortDate().equals(getSelectedDate().getPersianShortDate()))) {
+        if (getSelectedDate() != null)
+            Log.e("---", "current date = " + currentCalendarMonth.getPersianShortDate() + " selected date = " + getSelectedDate().getPersianShortDate());
+        if ((selectionMode == SelectionMode.Single.getValue()) && (getSelectedDate() != null &&
+                calendar.getPersianShortDate().equals(getSelectedDate().getPersianShortDate())) && getSelectedDate().getPersianMonth() == currentCalendarMonth.getPersianMonth()) {
 
             if (calendarListener != null) {
                 calendarListener.onDateSelected(getSelectedDate());
