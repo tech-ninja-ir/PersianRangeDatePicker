@@ -167,9 +167,9 @@ public class DatePickerBottomSheet extends BottomSheetDialogFragment {
                 if (calendar.isShowCalendarMilady) {
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(startDate);
-                    tvDate1.setText(_startDate.getPersianWeekDayName() + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + MyUtils.getMiladyMonthName(calendar.get(Calendar.MONTH)) + 1);
+                    tvDate1.setText(_startDate.getPersianWeekDayName() + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + MyUtils.getMiladyMonthName(calendar.get(Calendar.MONTH) + 1));
                     calendar.setTime(endDate);
-                    tvDate2.setText(_endDate.getPersianWeekDayName() + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + MyUtils.getMiladyMonthName(calendar.get(Calendar.MONTH)) + 1);
+                    tvDate2.setText(_endDate.getPersianWeekDayName() + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + MyUtils.getMiladyMonthName(calendar.get(Calendar.MONTH) + 1));
                 } else {
                     tvDate1.setText(_startDate.getPersianWeekDayName() + " " + _startDate.getPersianDay() + " " + _startDate.getPersianMonthName());
                     tvDate2.setText(_endDate.getPersianWeekDayName() + " " + _endDate.getPersianDay() + " " + _endDate.getPersianMonthName());
