@@ -240,7 +240,7 @@ public class DateRangeCalendarView extends LinearLayout {
 
     }
 
-    private void changeCalendarType(boolean isMilady) {
+    public void changeCalendarType(boolean isMilady) {
         setShowGregorianDate(isMilady);
         for (int i = 0; i < llDaysContainer.getChildCount(); i++) {
             LinearLayout weekRow = (LinearLayout) llDaysContainer.getChildAt(i);

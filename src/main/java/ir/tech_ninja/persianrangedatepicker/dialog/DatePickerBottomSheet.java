@@ -250,6 +250,8 @@ public class DatePickerBottomSheet extends BottomSheetDialogFragment {
 
         //init
         calendar.setAttributes();
+        calendar.isShowCalendarMilady = showGregorianDate;
+        calendar.changeCalendarType(showGregorianDate);
         calendar.build();
 
         if (insertPoint.getChildCount() > 0) {
