@@ -18,6 +18,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <include
+        android:id="@+id/layout_calendar_week_days_en"
+        layout="@layout/layout_calendar_week_days_en"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/llDaysContainer"
         android:layout_width="wrap_content"

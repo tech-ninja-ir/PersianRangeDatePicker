@@ -34,7 +34,7 @@ public class DateRangeCalendarView extends LinearLayout {
     private final Context mContext;
     private final AttributeSet attrs;
     private LinearLayout llDaysContainer;
-    private LinearLayout llTitleWeekContainer;
+    private LinearLayout llTitleWeekContainer, llTitleWeekContainerEn;
     private CustomTextView tvYearTitle;
     private TextView tvYearGeorgianTitle;
     private ImageView imgVNavLeft, imgVNavRight;
@@ -43,7 +43,7 @@ public class DateRangeCalendarView extends LinearLayout {
 
     private PersianCalendar currentCalendarMonth, minSelectedDate, maxSelectedDate;
     private final ArrayList<Integer> selectedDatesRange = new ArrayList<>();
-    private Typeface typeface;
+    private Typeface typeface, typefaceEn;
     private RelativeLayout rlHeaderCalendar;
 
     private static final int STRIP_TYPE_NONE = 0;
@@ -100,6 +100,7 @@ public class DateRangeCalendarView extends LinearLayout {
 
     private void initView() {
         typeface = FontUtils.Default(mContext);
+        typefaceEn = FontUtils.latinNumber(mContext);
         locale = mContext.getResources().getConfiguration().locale;
 
         setDefaultValues();
@@ -169,6 +170,7 @@ public class DateRangeCalendarView extends LinearLayout {
         LinearLayout mainView = (LinearLayout) layoutInflater.inflate(R.layout.layout_calendar_month, this, true);
         llDaysContainer = mainView.findViewById(R.id.llDaysContainer);
         llTitleWeekContainer = mainView.findViewById(R.id.layout_calendar_week_days);
+        llTitleWeekContainerEn = mainView.findViewById(R.id.layout_calendar_week_days_en);
         tvYearTitle = mainView.findViewById(R.id.tvYearTitle);
         tvYearGeorgianTitle = mainView.findViewById(R.id.tvYearGeorgianTitle);
         imgVNavLeft = mainView.findViewById(R.id.imgVNavLeft);
@@ -252,13 +254,18 @@ public class DateRangeCalendarView extends LinearLayout {
                     container.tvDateGeorgian.setVisibility(VISIBLE);
                     btnChangeCalendarType.setText("تقویم شمسی");
                     tvYearGeorgianTitle.setVisibility(VISIBLE);
+                    tvYearGeorgianTitle.setTypeface(typefaceEn);
                     tvYearTitle.setVisibility(GONE);
+                    llTitleWeekContainer.setVisibility(GONE);
+                    llTitleWeekContainerEn.setVisibility(VISIBLE);
                 } else {
                     container.tvDate.setVisibility(VISIBLE);
                     container.tvDateGeorgian.setVisibility(INVISIBLE);
                     btnChangeCalendarType.setText("تقویم میلادی");
                     tvYearGeorgianTitle.setVisibility(GONE);
                     tvYearTitle.setVisibility(VISIBLE);
+                    llTitleWeekContainer.setVisibility(VISIBLE);
+                    llTitleWeekContainerEn.setVisibility(GONE);
                 }
             }
         }
@@ -469,8 +476,14 @@ public class DateRangeCalendarView extends LinearLayout {
                 RelativeLayout rlDayContainer = (RelativeLayout) weekRow.getChildAt(j);
                 DayContainer container = new DayContainer(rlDayContainer);
 
-                if (typeface != null) {
-                    container.tvDate.setTypeface(typeface);
+                if (isShowCalendarMilady) {
+                    if (typefaceEn != null) {
+                        container.tvDateGeorgian.setTypeface(typefaceEn);
+                    }
+                } else {
+                    if (typeface != null) {
+                        container.tvDate.setTypeface(typeface);
+                    }
                 }
 
                 container.tvDate.setTextSize(textSizeDate);
@@ -571,12 +584,19 @@ public class DateRangeCalendarView extends LinearLayout {
             container.tvCurrentDay.setVisibility(VISIBLE);
             container.imgEvent.setColorFilter(todayColor, android.graphics.PorterDuff.Mode.SRC_IN);
 //            container.tvDate.setTextColor(todayColor);
-            container.tvDate.setTypeface(typeface, Typeface.BOLD);
         } else {
             container.imgEvent.setVisibility(INVISIBLE);
             container.tvCurrentDay.setVisibility(INVISIBLE);
-            container.tvDate.setTypeface(typeface, Typeface.NORMAL);
         }
+
+        if (isShowCalendarMilady) {
+            container.tvDateGeorgian.setTypeface(typefaceEn, Typeface.BOLD);
+            container.tvCurrentDay.setText("Today");
+        } else {
+            container.tvDate.setTypeface(typeface, Typeface.BOLD);
+            container.tvCurrentDay.setText("امروز");
+        }
+
     }
 
     public PersianCalendar getSelectedDate() {
@@ -822,18 +842,36 @@ public class DateRangeCalendarView extends LinearLayout {
             textView.setTextColor(weekColor);
             textView.setTextSize(textSizeWeek);
         }
+
+        for (int i = 0; i < llTitleWeekContainerEn.getChildCount(); i++) {
+            CustomTextView textView = (CustomTextView) llTitleWeekContainerEn.getChildAt(i);
+            textView.setTextColor(weekColor);
+            textView.setTextSize(textSizeWeek);
+        }
     }
 
     public void setTypeface(Typeface typeface) {
-        if (typeface != null) {
-            this.typeface = typeface;
+        if (isShowCalendarMilady) {
+            if (typefaceEn != null) {
+                drawCalendarForMonth(currentCalendarMonth);
+                tvYearTitle.setTypeface(this.typefaceEn);
 
-            drawCalendarForMonth(currentCalendarMonth);
-            tvYearTitle.setTypeface(this.typeface);
+                for (int i = 0; i < llTitleWeekContainerEn.getChildCount(); i++) {
+                    CustomTextView textView = (CustomTextView) llTitleWeekContainerEn.getChildAt(i);
+                    textView.setTypeface(this.typefaceEn);
+                }
+            }
+        } else {
+            if (typeface != null) {
+                this.typeface = typeface;
 
-            for (int i = 0; i < llTitleWeekContainer.getChildCount(); i++) {
-                CustomTextView textView = (CustomTextView) llTitleWeekContainer.getChildAt(i);
-                textView.setTypeface(this.typeface);
+                drawCalendarForMonth(currentCalendarMonth);
+                tvYearTitle.setTypeface(this.typeface);
+
+                for (int i = 0; i < llTitleWeekContainer.getChildCount(); i++) {
+                    CustomTextView textView = (CustomTextView) llTitleWeekContainer.getChildAt(i);
+                    textView.setTypeface(this.typeface);
+                }
             }
         }
     }

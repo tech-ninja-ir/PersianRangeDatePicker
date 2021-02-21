@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llTitleWeekContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
+        android:id="@+id/tv_sa_en"
+        style="@style/WeekDayTitleStyle"
+        android:tag="dayOfWeek1"
+        android:text="sa" />
+
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
+        android:id="@+id/tv_su_en"
+        style="@style/WeekDayTitleStyle"
+        android:tag="dayOfWeek2"
+        android:text="su" />
+
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
+        android:id="@+id/tv_mo_en"
+        style="@style/WeekDayTitleStyle"
+        android:tag="dayOfWeek3"
+        android:text="mo" />
+
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
+        android:id="@+id/tv_tu_en"
+        style="@style/WeekDayTitleStyle"
+        android:tag="dayOfWeek4"
+        android:text="tu" />
+
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
+        android:id="@+id/tv_we_en"
+        style="@style/WeekDayTitleStyle"
+        android:tag="dayOfWeek5"
+        android:text="we" />
+
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
+        android:id="@+id/tv_th_en"
+        style="@style/WeekDayTitleStyle"
+        android:tag="dayOfWeek6"
+        android:text="th" />
+
+    <ir.tech_ninja.persianrangedatepicker.customeView.CustomTextView
+        android:id="@+id/tv_fi_en"
+        style="@style/WeekDayTitleStyle"
+        android:tag="dayOfWeek7"
+        android:text="fr" />
+
+</LinearLayout>
