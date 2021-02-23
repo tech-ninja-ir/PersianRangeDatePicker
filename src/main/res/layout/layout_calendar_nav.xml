@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imgVNavLeft"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:scaleType="centerInside"
@@ -51,8 +51,8 @@
 
     <ImageView
         android:id="@+id/imgVNavRight"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:scaleType="center"
